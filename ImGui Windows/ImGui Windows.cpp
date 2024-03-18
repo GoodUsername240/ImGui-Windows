@@ -21,7 +21,7 @@ namespace _ImGui_Windows_Reserved {
 	bool bMinimized = false, bOpen = false;
 	int width = 0, height = 0;
 	HWND hWnd = NULL;
-	ImGuiWindow* (__stdcall* DrawCallback)() = NULL;
+	DRAWCALLBACK DrawCallback = NULL;
 	ImGuiWindow* pWindow = (ImGuiWindow*)1;
 }
 using namespace _ImGui_Windows_Reserved;
@@ -43,7 +43,7 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 
 /***** FUNCTIONS *****/
 
-bool ImGui_Window::Begin(char* Name, ImGuiWindow* (__stdcall* DrawCallback)(), int x, int y, int width, int height, WindowParams Params) {
+bool ImGui_Window::Begin(char* Name, DRAWCALLBACK DrawCallback, int x, int y, int width, int height, WindowParams Params) {
 	if (bOpen)
 		return false;
 	bOpen = true;
@@ -68,7 +68,7 @@ bool ImGui_Window::Begin(char* Name, ImGuiWindow* (__stdcall* DrawCallback)(), i
 	// Register class
 	WNDCLASSEXA WindowClass = { 0 };
 	WindowClass.cbSize = sizeof(WNDCLASSEXA);
-	WindowClass.lpfnWndProc = WndProc;
+	WindowClass.lpfnWndProc = (WNDPROC)WndProc;
 	WindowClass.hInstance = GetModuleHandle(NULL);
 	WindowClass.style = CS_CLASSDC;
 	WindowClass.lpszClassName = WindowName;

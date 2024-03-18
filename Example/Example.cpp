@@ -31,7 +31,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
     UNREFERENCED_PARAMETER(nCmdShow);
 
-#ifdef RANDOMIZE_NAME
+#if 0 
     Params = (WindowParams)(Params | WindowParams::RandomClassName);
 #endif
 
@@ -42,7 +42,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     io.IniFilename = NULL;
 
     // ImGui_Window::Begin is blocking, and will return once the window is closed
-    if (!ImGui_Window::Begin(const_cast<char*>("Example"), Draw, CW_USEDEFAULT, CW_USEDEFAULT, 550, 680, Params)) {
+    if (!ImGui_Window::Begin(const_cast<char*>("Example"), (DRAWCALLBACK)Draw, CW_USEDEFAULT, CW_USEDEFAULT, 550, 680, Params)) {
         MessageBoxA(NULL, "Failed!", NULL, MB_OK | MB_ICONERROR);
         return 1;
     }

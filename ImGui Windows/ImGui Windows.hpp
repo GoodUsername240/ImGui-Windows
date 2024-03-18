@@ -12,15 +12,9 @@ enum WindowParams : uint8_t {
 	RandomClassName = 1
 };
 
-//WindowParams operator|(WindowParams param1, WindowParams param2) {
-//	return (WindowParams)((uint8_t)param1 | (uint8_t)param2);
-//}
-//
+typedef ImGuiWindow* (__stdcall* DRAWCALLBACK)();
+
 WindowParams operator|=(WindowParams param1, WindowParams param2);
-//
-//WindowParams operator&(WindowParams param1, WindowParams param2) {
-//	return (WindowParams)((uint8_t)param1 & (uint8_t)param2);
-//}
 
 
 namespace ImGui_Window {
@@ -35,7 +29,7 @@ namespace ImGui_Window {
 	/// <param name="height">Starting height</param>
 	/// <param name="Params">Window settings</param>
 	/// <returns>True on new window created, if a window is already open it will return false</returns>
-	bool Begin(char* Name, ImGuiWindow* (__stdcall* DrawCallback)(), int x, int y, int width, int height, WindowParams Params = WindowParams::Default);
+	bool Begin(char* Name, DRAWCALLBACK DrawCallback, int x, int y, int width, int height, WindowParams Params = WindowParams::Default);
 
 	/// <summary>
 	/// Changes the size of the window

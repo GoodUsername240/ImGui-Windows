@@ -26,10 +26,9 @@ git clone https://github.com/GoodUsername240/ImGui-Windows.git
 cd ImGui-Windows
 git submodule update --init
 ```
-Build `ImGui Windows.sln` in `Release x64` mode.
+Build `ImGui Windows.sln` in desired mode.
 
 ## TODO
 
 - Multiple windows
 - Support for different backends
-test
